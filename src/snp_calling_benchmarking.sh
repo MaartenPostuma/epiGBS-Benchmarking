@@ -2,7 +2,8 @@
 #cluster to the reference genome!!! If not done in this order the denovo and legacy branch benchmarking won't work.
 
 #Create a conda environment which contains all the dependencies for running the SNP calling benchmarking
-conda create env -f src/env/benchmarking.yaml
+source activate epiGBS-benchmarking.yaml
+
 
 #SNP Calling
 #Download ascencions vcf files
@@ -96,7 +97,7 @@ tabix scratch/liftoverPooled.vcf.gz -f
 bcftools norm --check-ref s -f /mnt/nfs/bioinfdata/home/NIOO/maartenp/epiGBS-ref/input/TAIR_10_chr.fa results/liftOverAdam.vcf.gz | bgzip -c  > scratch/denovo/normalisedAdam.vcf.gz
 snakemake -s denovoSNP_calling.smk --use-conda -j 16
 
-
+#Create the RTG plots for all individuals
 rtg rocplot --png results/snp_calling/figures/CviDenovo.png  results/snp_calling/denovo/RTGGQ/Cvi*/weighted_roc.tsv.gz --precision-sensitivity --zoom=0,0,100,100
 rtg rocplot --png results/snp_calling/figures/Gu0Denovo.png  results/snp_calling/denovo/RTGGQ/Gu0*/weighted_roc.tsv.gz --precision-sensitivity --zoom=0,0,100,100
 rtg rocplot --png results/snp_calling/figures/Ei2Denovo.png  results/snp_calling/denovo/RTGGQ/Ei2*/weighted_roc.tsv.gz --precision-sensitivity --zoom=0,0,100,100
@@ -125,7 +126,7 @@ bcftools norm --check-ref s -f /mnt/nfs/bioinfdata/home/NIOO/maartenp/epiGBS-ref
 snakemake -s denovoSNP_calling.smk --use-conda -j 16
 
 
-
+#Create the rtg plots for all individuals
 rtg rocplot --png results/snp_calling/figures/CvireferenceFilt.png  results/snp_calling/refFilt/Squash*/Cvi*/weighted_roc.tsv.gz --precision-sensitivity --zoom=0,0,100,100
 rtg rocplot --png results/snp_calling/figures/Gu0referenceFilt.png  results/snp_calling/refFilt/Squash*/Gu0*/weighted_roc.tsv.gz --precision-sensitivity --zoom=0,0,100,100
 rtg rocplot --png results/snp_calling/figures/Ei2referenceFilt.png  results/snp_calling/refFilt/Squash*/Ei2*/weighted_roc.tsv.gz --precision-sensitivity --zoom=0,0,100,100
@@ -133,3 +134,6 @@ rtg rocplot --png results/snp_calling/figures/LerreferenceFilt.png  results/snp_
 rtg rocplot --png results/snp_calling/figures/ColreferenceFilt.png  results/snp_calling/refFilt/Squash*/Col*/weighted_roc.tsv.gz --precision-sensitivity --zoom=0,0,100,100
 
 Rscript SNP_calling_plots.R
+Rscript SNP_PCA.R
+
+#To generate the figures used in the maintext of the paper the denovoBenchmarking1ind.sh was used.

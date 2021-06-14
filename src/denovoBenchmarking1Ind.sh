@@ -1,4 +1,5 @@
 #####
+source activate epiGBS-benchmarking.yaml
 # init sym links
 ln -s ../../../epiGBS-ref/input/ ./
 ln -s ../../../finalBenchmarking/data/snp-calls/Cvi.vcf.gz

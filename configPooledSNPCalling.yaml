@@ -1,9 +1,0 @@
-barcodes: "/mnt/nfs/bioinfdata/home/NIOO/maartenp/finalBenchmarking/data/pooledSamples.tsv"
-input_dir: "/mnt/nfs/bioinfdata/home/NIOO/maartenp/finalBenchmarking/pooledSNPcallingRef/"
-output_dir: "/mnt/nfs/bioinfdata/home/NIOO/maartenp/finalBenchmarking/pooledSNPcallingRef/"
-tmp_dir: "/mnt/nfs/bioinfdata/home/NIOO/maartenp/finalBenchmarking/scratch"
-ref_dir: "/mnt/nfs/bioinfdata/home/NIOO/maartenp/epiGBS-ref/input/"
-genome: "TAIR_10_chr.fa"
-param_SNPcalling:
-  stand_call_conf: "20"
-score_field: "GQ"
