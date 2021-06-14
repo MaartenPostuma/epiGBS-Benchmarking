@@ -1,0 +1,7 @@
+barcodes: "data/Barcode_noC24.tsv"
+input_dir: "/mnt/nfs/bioinfdata/home/NIOO/maartenp/adam/adam-denovo/output"
+output_dir: "results/snp_calling/denovo/"
+tmp_dir: "scratch/"
+ref: "/mnt/nfs/bioinfdata/home/NIOO/maartenp/adam/adam-denovo/output_denovo/NNNNref/ref.fa"
+score_field: "GQ"
+ref_truth: "/mnt/nfs/bioinfdata/home/NIOO/maartenp/epiGBS-ref/input/TAIR_10_chr.fa"

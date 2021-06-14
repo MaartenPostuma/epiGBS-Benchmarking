@@ -1,0 +1,15 @@
+
+*.png
+*.html
+results/parameterTest/parameterTest.xlsx
+results/parameterTest/parameterTest.csv
+*.docx
+bismark-implementation-tests/
+results/epiGBS-SNPCalling.tar.gz
+results/snp_calling/referenceVsBaseline.tiff
+merged.bam
+methyl*
+results/*
+*.ti*
+*.eps
+*.vcf*

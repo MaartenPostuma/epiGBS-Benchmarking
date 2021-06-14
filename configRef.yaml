@@ -1,0 +1,6 @@
+barcodes: "data/Barcode_noC24.tsv"
+input_dir: "/mnt/nfs/bioinfdata/home/NIOO/maartenp/epiGBS-ref/output"
+output_dir: "results/snp_calling/ref/"
+tmp_dir: "scratch/"
+ref: "/mnt/nfs/bioinfdata/home/NIOO/maartenp/epiGBS-ref/input/TAIR_10_chr.fa"
+score_field: "GQ"
