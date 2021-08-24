@@ -1,6 +1,6 @@
 #Activate conda environment
-conda env create -f src/env/epiGBS-benchmarking.yaml
-source activate epiGBS-benchmarking.yaml
+conda env create -f src/env/truth.yaml
+source activate truth
 
 #Download col-0 data #https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE43857 for other ascessions
 wget https://ftp.ncbi.nlm.nih.gov/geo/samples/GSM1085nnn/GSM1085222/suppl/GSM1085222_mC_calls_Col_0.tsv.gz
@@ -36,6 +36,8 @@ Rscript src/finalBenchMarkingReference.R
 
 # process consensus_cluster.renamed.fa ready for PE alignment
 
+#ln -s /mnt/nfs/bioinfdata/home/NIOO/maartenp/epiGBS-denovo/output/output_denovo/* data/liftOver/
+
 awk '$0~"^>" {if(NR!=1){printf "\n%s\t",$0}else{printf "%s\t",$0}} $0!~"^>" {printf "%s",$0} END{print null}' /home/NIOO/maartenp/adam/adam-denovo/output/output_denovo/NNNNref/ref.fa | awk '{print $1 >> "R1.fa"; print $1 >> "R2.fa"; R1=substr($2,0,(length($2)/2)-1); R2=substr($2,length($2)/2); print R1 >> "R1.fa"; print R2 >> "R2.fa"}';
 paste <(grep "^>" R2.fa) <(grep -v "^>" R2.fa | tr ACTG TGAC | rev) | tr "\t" "\n" > scratch/consensus_cluster_with_Ns_2.fa && rm R2.fa;
 mv R1.fa scratch/consensus_cluster_with_Ns_1.fa
@@ -51,8 +53,3 @@ samtools depth Cvi0_11.bam | awk '$3>0{print $1,$2-1,$2,$3}' | sed 's/ /\t/g' > 
 
 python ../../../finalBenchmarking/src/liftover_bed.py consensus.bam Cvi0_11_all.depth > AllLiftover.depth
 
-#Run the Rscripts to generate the plots. Make sure to change the file paths to the corresponding file / directory locations!
-
-Rscript src/finalBenchmarkingDenovo.R
-Rscript src/finalBenchmarkingReference.R
-Rscript src/methylKitPCA.R

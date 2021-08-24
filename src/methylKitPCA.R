@@ -28,7 +28,7 @@ pcaPlotRef<-data.frame(PC1=pcaRef$x[,1],PC2=pcaRef$x[,2],PC3=pcaRef$x[,3],ind=in
 ggplot(pcaPlotRef,aes(x=PC1,y=PC2,col=pop,label=ind))+geom_point(size=3)+theme_light()+
   scale_colour_manual(values = colorBlindBlack8)+ggtitle("A (ref)")
 
-clusterRef<-clusterSamples(unitedRef)
+clusterRef<-clusterSamples(unitedRef,)
 ggdendrogram(clusterRef)
 
 dend_dataRef <- dendro_data(clusterRef, type = "rectangle")

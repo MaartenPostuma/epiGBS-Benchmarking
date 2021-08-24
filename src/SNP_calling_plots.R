@@ -79,7 +79,7 @@ cbPalette <- c("Black","Blue","#000000","#0072B2","#E69F00")
 
 pr1 <- ggplot(df1,aes(x=recall,y=precision,color=tool)) +
   geom_step(size=0.9) +
-  geom_text_repel(data = scoredf1,aes(x=recall,y=precision,color=tool,label=round(score)),size=2)+
+  #geom_text_repel(data = scoredf1,aes(x=recall,y=precision,color=tool,label=round(score)),size=2)+
   ylab("Precision") +
   xlab("Sensitivity") +
   scale_y_continuous(breaks=seq(0, 1, 0.2))+
@@ -97,7 +97,7 @@ pr1
 
 pr2 <- ggplot(df2,aes(x=recall,y=precision,color=tool)) +
   geom_step(size=0.9) +
-  geom_text_repel(data = scoredf2,aes(x=recall,y=precision,color=tool,label=round(score)),size=2)+
+  #geom_text_repel(data = scoredf2,aes(x=recall,y=precision,color=tool,label=round(score)),size=2)+
   ylab("Precision") +
   xlab("Sensitivity") +
   scale_y_continuous(breaks=seq(0, 1, 0.2))+
@@ -126,12 +126,12 @@ pr3 <- ggplot(df3[df3$score>10,],aes(x=recall,y=precision,color=tool)) +
   guides(color=guide_legend(nrow=1),linetype=guide_legend(nrow=1,override.aes = list(size=0.8)))
   
 pr3
-
+ggsave("")
 
 g <- ggarrange(pr2,pr1, ncol=2, nrow=1, widths=c(6,6), align="h", labels="AUTO", common.legend = TRUE, legend="top", legend.grob=get_legend(pr3))
 g
-ggsave("../epiGBS_paper/Figures/SNP_calling.tiff",g,height=4,width=9,dpi="retina")
-
+ggsave("../epiGBS_paper/Figures/pdf-Figures/Figure7.pdf",g,height=4,width=9,dpi="retina")
+?ggarrange
 
 p<- ggarrange(pr2,pr1,pr3, ncol=3, nrow=1, widths=c(6,6), align="h", labels="AUTO", common.legend = TRUE, legend="top", legend.grob=get_legend(pr3))
 p
